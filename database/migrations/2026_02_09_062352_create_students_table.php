@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->string('avatar')->nullable();
             $table->date('dob');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(1);
 
             $table->timestamps();
         });

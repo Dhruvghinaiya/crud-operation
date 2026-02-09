@@ -7,16 +7,14 @@
 
     <div class="min-h-[70vh] flex items-center justify-center">
 
-        <!-- FORM CARD -->
         <div class="w-full max-w-xl bg-white rounded-xl shadow-lg p-8">
 
             <form action="{{ route('courses.store') }}" method="POST" class="space-y-6">
                 @csrf
 
-                <!-- Course Name -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
-                        Course Name
+                        Course Name <span class="text-red-600">*</span>
                     </label>
 
                     <input type="text" name="name" value="{{ old('name') }}" placeholder="Enter course name"
@@ -28,7 +26,6 @@
                     @enderror
                 </div>
 
-                <!-- Description -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Description
@@ -39,7 +36,6 @@
                                  focus:border-indigo-500 focus:ring focus:ring-indigo-200">{{ old('description') }}</textarea>
                 </div>
 
-                <!-- Buttons -->
                 <div class="flex justify-end gap-3 pt-2">
                     <a href="{{ route('courses.index') }}"
                         class="px-4 py-2 rounded-lg border text-gray-600 hover:bg-gray-100">
