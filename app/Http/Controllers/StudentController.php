@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -12,7 +15,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::all();
+        $courses = Course::all();
+        return view('Students.index',compact('students','courses'));
     }
 
     /**
@@ -20,15 +25,16 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('Students.create');
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -50,7 +56,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(UpdateCourseRequest $request, Student $student)
     {
         //
     }

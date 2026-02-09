@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses  = Course::all();
+        return view('Courses.index', compact('courses'));
     }
 
     /**
@@ -20,15 +23,17 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('Courses.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        //
+        Course::create($request->getInsertTableField());
+
+        return redirect()->route('courses.index')->with('success', 'cource createsd successfully');
     }
 
     /**
@@ -44,15 +49,16 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        return view('courses.edit', compact('course'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        Course::find($course->id)->update($request->getInsertTableField());
+        return redirect()->route('courses.index')->with('success', 'course update successfully');
     }
 
     /**
@@ -60,6 +66,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        Course::find($course->id)->delete();
+        return redirect()->route('courses.index')->with('success', 'cource deleted successfully');
     }
 }
